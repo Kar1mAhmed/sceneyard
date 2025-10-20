@@ -16,14 +16,15 @@
 		"directory": ".open-next/assets"
 	},
 	"observability": {
-    "enabled": false,
-    "head_sampling_rate": 1,
-    "logs": {
-		"enabled": true,
+		"enabled": false,
 		"head_sampling_rate": 1,
-		"persist": true,
-		"invocation_logs": true
-    }
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 1,
+			"persist": true,
+			"invocation_logs": true
+		}
+	}
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
