@@ -1,0 +1,54 @@
+{
+  "name": "SceneYard - Premium After Effects Templates",
+  "short_name": "SceneYard",
+  "description": "Download 400+ professional After Effects templates and motion graphics project files. Studio-quality AE templates for video editing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffbf5",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "categories": ["video", "design", "productivity", "graphics"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "label": "SceneYard Templates Gallery"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Browse Templates",
+      "short_name": "Templates",
+      "description": "Browse After Effects templates",
+      "url": "/#demo",
+      "icons": [{ "src": "/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Join Waitlist",
+      "short_name": "Waitlist",
+      "description": "Join the SceneYard waitlist",
+      "url": "/#waitlist",
+      "icons": [{ "src": "/icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
