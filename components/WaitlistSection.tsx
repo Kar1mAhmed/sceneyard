@@ -56,51 +56,50 @@ export default function WaitlistSection() {
           </div>
 
           {/* Waitlist form */}
-          <div className="bg-white border border-[var(--border)] rounded-2xl p-8 shadow-lg">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Email and Button Row */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex-1">
-                  <label htmlFor="waitlist-email" className="block text-sm font-medium text-foreground mb-2">
-                    Email address *
-                  </label>
-                  <input
-                    type="email"
-                    id="waitlist-email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full px-5 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--border)] text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                    placeholder="your@email.com"
-                  />
-                </div>
-
-                {showReferral && (
-                  <div className="flex-1">
-                    <label htmlFor="referral-code" className="block text-sm font-medium text-foreground mb-2">
-                      Referral code (optional)
-                    </label>
-                    <input
-                      type="text"
-                      id="referral-code"
-                      value={referralCode}
-                      onChange={(e) => setReferralCode(e.target.value)}
-                      className="w-full px-5 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--border)] text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                      placeholder="Enter referral code"
-                    />
-                  </div>
-                )}
-
-                <div className="flex items-end">
-                  <button
-                    type="submit"
-                    className="px-8 py-3 rounded-xl bg-accent text-white font-semibold hover:bg-[var(--accent-hover)] transition-all focus:outline-none focus:ring-2 focus:ring-accent whitespace-nowrap"
-                  >
-                    Join Waitlist
-                  </button>
-                </div>
+          <div className="bg-white border border-[var(--border)] rounded-2xl p-6 sm:p-8 shadow-lg">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Email Input */}
+              <div>
+                <label htmlFor="waitlist-email" className="block text-sm font-medium text-foreground mb-2">
+                  Email address *
+                </label>
+                <input
+                  type="email"
+                  id="waitlist-email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full px-5 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--border)] text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                  placeholder="your@email.com"
+                />
               </div>
 
+              {/* Referral Code (if shown) */}
+              {showReferral && (
+                <div>
+                  <label htmlFor="referral-code" className="block text-sm font-medium text-foreground mb-2">
+                    Referral code (optional)
+                  </label>
+                  <input
+                    type="text"
+                    id="referral-code"
+                    value={referralCode}
+                    onChange={(e) => setReferralCode(e.target.value)}
+                    className="w-full px-5 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--border)] text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                    placeholder="Enter referral code"
+                  />
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full px-8 py-3 rounded-xl bg-accent text-white font-semibold hover:bg-[var(--accent-hover)] transition-all focus:outline-none focus:ring-2 focus:ring-accent shadow-md hover:shadow-lg"
+              >
+                Join Waitlist
+              </button>
+
+              {/* Referral Code Toggle */}
               {!showReferral && (
                 <button
                   type="button"
@@ -111,7 +110,8 @@ export default function WaitlistSection() {
                 </button>
               )}
 
-              <p className="text-xs text-muted text-center">
+              {/* Terms */}
+              <p className="text-xs text-muted text-center pt-2">
                 By joining, you agree to receive updates about SceneYard. Unsubscribe anytime.
               </p>
             </form>

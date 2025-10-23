@@ -61,35 +61,66 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="mb-20 max-w-6xl mx-auto overflow-x-auto">
-          <div className="relative min-w-[800px] px-8">
-            {/* Horizontal line */}
-            <div className="absolute left-0 right-0 top-8 h-0.5 bg-accent" />
-            
-            {/* Steps */}
-            <div className="flex items-start justify-between">
-              {steps.map((step, index) => (
-                <div key={index} className="relative flex flex-col items-center group flex-1">
-                  {/* Number circle */}
-                  <div className="relative z-10 mb-6">
-                    <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-shadow">
-                      {step.number}
+        {/* Timeline - Horizontal on desktop, Vertical on mobile */}
+        <div className="mb-20 max-w-6xl mx-auto">
+          {/* Desktop: Horizontal */}
+          <div className="hidden md:block overflow-x-auto">
+            <div className="relative min-w-[800px] px-8">
+              {/* Horizontal line */}
+              <div className="absolute left-0 right-0 top-8 h-0.5 bg-accent" />
+              
+              {/* Steps */}
+              <div className="flex items-start justify-between">
+                {steps.map((step, index) => (
+                  <div key={index} className="relative flex flex-col items-center group flex-1">
+                    {/* Number circle */}
+                    <div className="relative z-10 mb-6">
+                      <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                        {step.number}
+                      </div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="text-center max-w-[200px]">
+                      <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-muted leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
                   </div>
-                  
-                  {/* Content */}
-                  <div className="text-center max-w-[200px]">
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-muted leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+          </div>
+
+          {/* Mobile: Vertical */}
+          <div className="md:hidden space-y-8 px-4">
+            {steps.map((step, index) => (
+              <div key={index} className="relative flex gap-4 group">
+                {/* Number circle */}
+                <div className="relative shrink-0">
+                  <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                    {step.number}
+                  </div>
+                  {/* Vertical line */}
+                  {index < steps.length - 1 && (
+                    <div className="absolute left-1/2 top-14 bottom-0 w-0.5 h-12 bg-accent/30 -translate-x-1/2" />
+                  )}
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 pt-2">
+                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

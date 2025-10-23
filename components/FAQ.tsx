@@ -43,25 +43,35 @@ const faqs: FAQItem[] = [
 
 function FAQAccordionItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onToggle: () => void }) {
   return (
-    <div className="mb-4">
+    <div className={`mb-4 rounded-2xl border transition-all duration-300 ${
+      isOpen ? 'border-accent shadow-lg bg-white' : 'border-[var(--border)] bg-white hover:border-accent/50 hover:shadow-md'
+    }`}>
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 p-6 text-left bg-white border border-[var(--border)] rounded-2xl hover:border-accent hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-accent"
+        className="w-full flex items-center justify-between gap-4 p-6 text-left focus:outline-none"
         aria-expanded={isOpen}
       >
-        <span className="text-base font-semibold text-foreground pr-8">
+        <span className={`text-base font-semibold pr-8 transition-colors ${
+          isOpen ? 'text-accent' : 'text-foreground'
+        }`}>
           {faq.question}
         </span>
-        <ChevronDown
-          className={`w-5 h-5 text-accent shrink-0 transition-transform duration-300 ${
-            isOpen ? 'rotate-180' : ''
-          }`}
-          aria-hidden="true"
-        />
+        <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+          isOpen ? 'bg-accent rotate-180' : 'bg-gray-100'
+        }`}>
+          <ChevronDown
+            className={`w-5 h-5 transition-colors ${
+              isOpen ? 'text-white' : 'text-accent'
+            }`}
+            aria-hidden="true"
+          />
+        </div>
       </button>
       {isOpen && (
-        <div className="px-8 pb-8 pt-6 bg-gray-50/50 border-x border-b border-[var(--border)] rounded-b-2xl -mt-2">
-          <p className="text-foreground/80 leading-relaxed text-base">{faq.answer}</p>
+        <div className="px-6 pb-6 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="pl-2 border-l-2 border-accent/30">
+            <p className="text-foreground/80 leading-relaxed text-base pl-4">{faq.answer}</p>
+          </div>
         </div>
       )}
     </div>

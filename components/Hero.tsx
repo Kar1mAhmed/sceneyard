@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 
 const animatedWords = [
+  'Professional',
   'The Best',
   'Most modern',
   'Up-to-date',
@@ -48,11 +49,11 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-20 mt-12">
+    <section className="relative min-h-screen flex items-center justify-center px-6 py-20 mt-8">
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Animated headline */}
-        <div className="mb-8 h-24 sm:h-32 flex items-center justify-center">
+        <div className="mb-4 h-24 sm:h-32 flex items-center justify-center">
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight">
             <AnimatePresence mode="wait">
               <motion.span
@@ -71,7 +72,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-6 leading-tight">
-          Professional After Effects project files that helps editors ship faster.
+          After Effects project files that helps editors ship faster.
         </h2>
 
         {/* Supporting text */}
@@ -114,8 +115,8 @@ export default function Hero() {
         </button>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      {/* Scroll indicator - hidden on mobile */}
+      <div className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <ArrowDown className="w-6 h-6 text-muted" aria-hidden="true" />
       </div>
     </section>

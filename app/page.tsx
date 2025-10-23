@@ -7,14 +7,10 @@ import FeedbackForm from '@/components/FeedbackForm';
 import WaitlistSection from '@/components/WaitlistSection';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
-import StructuredData from '@/components/StructuredData';
 
 export default function Home() {
   return (
     <div className="relative min-h-screen">
-      {/* SEO Structured Data */}
-      <StructuredData />
-      
       {/* Dotted background */}
       <DottedBackground />
 
@@ -22,36 +18,26 @@ export default function Home() {
       <Header />
 
       {/* Main content */}
-      <main className="relative z-10" role="main">
+      <main className="relative z-10">
         {/* Hero Section */}
-        <article itemScope itemType="https://schema.org/WebPageElement">
-          <Hero />
-        </article>
+        <Hero />
 
         {/* Demo Section */}
-        <section id="features" aria-label="After Effects Templates Gallery" itemScope itemType="https://schema.org/ItemList">
+        <section id="features">
           <DemoSection />
         </section>
 
         {/* How It Works */}
-        <section aria-label="How SceneYard Works" itemScope itemType="https://schema.org/HowTo">
-          <HowItWorks />
-        </section>
+        <HowItWorks />
 
         {/* Feedback Form */}
-        <section aria-label="User Feedback" itemScope itemType="https://schema.org/WebPageElement">
-          <FeedbackForm />
-        </section>
+        <FeedbackForm />
 
         {/* Waitlist & Golden Member */}
-        <section aria-label="Join Waitlist" itemScope itemType="https://schema.org/Offer">
-          <WaitlistSection />
-        </section>
+        <WaitlistSection />
 
         {/* FAQ */}
-        <section aria-label="Frequently Asked Questions" itemScope itemType="https://schema.org/FAQPage">
-          <FAQ />
-        </section>
+        <FAQ />
       </main>
 
       {/* Footer */}

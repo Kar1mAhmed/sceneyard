@@ -8,101 +8,107 @@ export default function Footer() {
   return (
     <footer className="relative py-12 px-6 border-t-2 border-[var(--border)] bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center mb-4">
-              <div
-                className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center font-bold text-white"
-                aria-label="SceneYard logo"
-              >
-                SY
+        <div className="mb-12">
+          {/* Brand - Separate on mobile, same row on desktop */}
+          <div className="mb-8 md:mb-0 md:grid md:grid-cols-4 md:gap-12">
+            {/* Brand */}
+            <div className="mb-8 md:mb-0 md:col-span-2">
+              <div className="flex items-center mb-4">
+                <div
+                  className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center font-bold text-white"
+                  aria-label="SceneYard logo"
+                >
+                  SY
+                </div>
+                <span className="ml-3 text-xl font-bold text-foreground">
+                  SceneYard
+                </span>
               </div>
-              <span className="ml-3 text-xl font-bold text-foreground">
-                SceneYard
-              </span>
+              <p className="text-muted leading-relaxed max-w-md">
+                Premium After Effects templates for professional motion designers and video editors. Ship faster, deliver better.
+              </p>
             </div>
-            <p className="text-muted leading-relaxed max-w-md">
-              Premium After Effects templates for professional motion designers and video editors. Ship faster, deliver better.
-            </p>
-          </div>
 
-          {/* Links */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Product</h3>
-            <ul className="space-y-3">
-              <li>
-                <button
-                  onClick={() =>
-                    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
-                  }
-                  className="text-muted hover:text-foreground transition-colors focus:outline-none"
-                >
-                  Features
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() =>
-                    document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })
-                  }
-                  className="text-muted hover:text-foreground transition-colors focus:outline-none"
-                >
-                  Demo
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() =>
-                    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })
-                  }
-                  className="text-muted hover:text-foreground transition-colors focus:outline-none"
-                >
-                  How it Works
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() =>
-                    document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })
-                  }
-                  className="text-muted hover:text-foreground transition-colors focus:outline-none"
-                >
-                  FAQ
-                </button>
-              </li>
-            </ul>
-          </div>
+            {/* Product & Legal - Same row on mobile and desktop */}
+            <div className="grid grid-cols-2 md:col-span-2 gap-8 md:gap-12">
+            {/* Product */}
+            <div>
+              <h3 className="font-semibold text-foreground mb-4">Product</h3>
+              <ul className="space-y-3">
+                <li>
+                  <button
+                    onClick={() =>
+                      document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
+                    }
+                    className="text-muted hover:text-foreground transition-colors focus:outline-none"
+                  >
+                    Features
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() =>
+                      document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })
+                    }
+                    className="text-muted hover:text-foreground transition-colors focus:outline-none"
+                  >
+                    Demo
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() =>
+                      document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })
+                    }
+                    className="text-muted hover:text-foreground transition-colors focus:outline-none"
+                  >
+                    How it Works
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() =>
+                      document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })
+                    }
+                    className="text-muted hover:text-foreground transition-colors focus:outline-none"
+                  >
+                    FAQ
+                  </button>
+                </li>
+              </ul>
+            </div>
 
-          {/* Legal */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Legal</h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="/terms"
-                  className="text-muted hover:text-foreground transition-colors focus:outline-none"
-                >
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/privacy"
-                  className="text-muted hover:text-foreground transition-colors focus:outline-none"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/licenses"
-                  className="text-muted hover:text-foreground transition-colors focus:outline-none"
-                >
-                  License Agreement
-                </a>
-              </li>
-            </ul>
+            {/* Legal */}
+            <div>
+              <h3 className="font-semibold text-foreground mb-4">Legal</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="/terms"
+                    className="text-muted hover:text-foreground transition-colors focus:outline-none"
+                  >
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/privacy"
+                    className="text-muted hover:text-foreground transition-colors focus:outline-none"
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/licenses"
+                    className="text-muted hover:text-foreground transition-colors focus:outline-none"
+                  >
+                    License Agreement
+                  </a>
+                </li>
+              </ul>
+            </div>
+            </div>
           </div>
         </div>
 

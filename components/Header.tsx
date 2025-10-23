@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(true); // Start with scrolled state
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,7 +16,14 @@ export default function Header() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 50; // Offset for navbar height
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -52,12 +59,6 @@ export default function Header() {
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-2 bg-gray-50/80 backdrop-blur-sm rounded-full p-1.5 border border-gray-200/50" role="navigation">
             <button
-              onClick={() => scrollToSection('features')}
-              className="px-4 py-2 rounded-full text-sm font-medium text-muted hover:text-foreground hover:bg-white transition-all focus:outline-none"
-            >
-              Features
-            </button>
-            <button
               onClick={() => scrollToSection('demo')}
               className="px-4 py-2 rounded-full text-sm font-medium text-muted hover:text-foreground hover:bg-white transition-all focus:outline-none"
             >
@@ -68,6 +69,12 @@ export default function Header() {
               className="px-4 py-2 rounded-full text-sm font-medium text-muted hover:text-foreground hover:bg-white transition-all focus:outline-none"
             >
               How it Works
+            </button>
+            <button
+              onClick={() => scrollToSection('features')}
+              className="px-4 py-2 rounded-full text-sm font-medium text-muted hover:text-foreground hover:bg-white transition-all focus:outline-none"
+            >
+              Features
             </button>
             <button
               onClick={() => scrollToSection('waitlist')}
@@ -106,18 +113,9 @@ export default function Header() {
       {/* Mobile navigation */}
       <nav
         id="mobile-nav"
-        className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b-2 border-[var(--border)] shadow-sm"
+        className="hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-[var(--border)] shadow-lg"
       >
         <div className="px-6 py-4 space-y-3">
-          <button
-            onClick={() => {
-              scrollToSection('features');
-              document.getElementById('mobile-nav')?.classList.add('hidden');
-            }}
-            className="block w-full text-left text-muted hover:text-foreground transition-colors py-2"
-          >
-            Features
-          </button>
           <button
             onClick={() => {
               scrollToSection('demo');
@@ -135,6 +133,15 @@ export default function Header() {
             className="block w-full text-left text-muted hover:text-foreground transition-colors py-2"
           >
             How it Works
+          </button>
+          <button
+            onClick={() => {
+              scrollToSection('features');
+              document.getElementById('mobile-nav')?.classList.add('hidden');
+            }}
+            className="block w-full text-left text-muted hover:text-foreground transition-colors py-2"
+          >
+            Features
           </button>
           <button
             onClick={() => {
