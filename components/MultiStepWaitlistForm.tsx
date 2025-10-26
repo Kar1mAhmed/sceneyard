@@ -190,12 +190,9 @@ export default function MultiStepWaitlistForm() {
     <div ref={formRef} className="bg-white border border-[var(--border)] rounded-2xl p-6 sm:p-8 shadow-lg">
       {/* Progress Bar */}
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-muted">
+        <div className="text-center mb-3">
+          <span className="text-sm font-semibold text-foreground">
             Question {step} of {totalSteps}
-          </span>
-          <span className="text-sm font-medium text-accent">
-            {Math.round((step / totalSteps) * 100)}% complete
           </span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -467,10 +464,10 @@ export default function MultiStepWaitlistForm() {
               </button>
             ))}
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setStep(4)}
-              className="px-6 py-3 rounded-xl border border-gray-300 text-foreground font-semibold hover:bg-gray-50 transition-all flex items-center gap-2"
+              className="px-6 py-3 rounded-xl border border-gray-300 text-foreground font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
             >
               <ChevronLeft className="w-5 h-5" />
               Back
@@ -485,7 +482,7 @@ export default function MultiStepWaitlistForm() {
             <button
               onClick={handleSkip}
               disabled={isSubmitting}
-              className="px-6 py-3 rounded-xl text-muted hover:text-foreground transition-all disabled:opacity-50"
+              className="px-4 py-2 text-sm text-muted hover:text-foreground transition-all disabled:opacity-50 underline"
             >
               Skip
             </button>
