@@ -292,10 +292,10 @@ export default function MultiStepWaitlistForm() {
               </button>
             ))}
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setStep(1)}
-              className="px-6 py-3 rounded-xl border border-gray-300 text-foreground font-semibold hover:bg-gray-50 transition-all flex items-center gap-2"
+              className="px-6 py-3 rounded-xl border border-gray-300 text-foreground font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
             >
               <ChevronLeft className="w-5 h-5" />
               Back
@@ -309,7 +309,7 @@ export default function MultiStepWaitlistForm() {
             </button>
             <button
               onClick={handleSkip}
-              className="px-6 py-3 rounded-xl text-muted hover:text-foreground transition-all"
+              className="px-4 py-2 text-sm text-muted hover:text-foreground transition-all underline"
             >
               Skip
             </button>
@@ -354,10 +354,10 @@ export default function MultiStepWaitlistForm() {
               </button>
             ))}
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setStep(2)}
-              className="px-6 py-3 rounded-xl border border-gray-300 text-foreground font-semibold hover:bg-gray-50 transition-all flex items-center gap-2"
+              className="px-6 py-3 rounded-xl border border-gray-300 text-foreground font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
             >
               <ChevronLeft className="w-5 h-5" />
               Back
@@ -371,7 +371,7 @@ export default function MultiStepWaitlistForm() {
             </button>
             <button
               onClick={handleSkip}
-              className="px-6 py-3 rounded-xl text-muted hover:text-foreground transition-all"
+              className="px-4 py-2 text-sm text-muted hover:text-foreground transition-all underline"
             >
               Skip
             </button>
@@ -383,21 +383,21 @@ export default function MultiStepWaitlistForm() {
       {step === 4 && (
         <div className="space-y-6">
           <div>
-            <h3 className="text-xl font-bold text-foreground mb-2">
+            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2">
               What is your rating for our demo templates?
             </h3>
             <p className="text-sm text-muted mb-4">
               1 = Poor, 10 = Excellent
             </p>
           </div>
-          <div className="flex justify-between gap-2">
+          <div className="grid grid-cols-5 sm:flex sm:justify-between gap-2 sm:gap-3">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
               <button
                 key={rating}
                 onClick={() => setFormData({ ...formData, demoRating: rating })}
-                className={`flex-1 aspect-square rounded-xl border-2 font-bold transition-all ${
+                className={`aspect-square sm:flex-1 rounded-xl border-2 font-bold text-sm sm:text-base transition-all ${
                   formData.demoRating === rating
-                    ? 'border-accent bg-accent text-white scale-110'
+                    ? 'border-accent bg-accent text-white scale-105 sm:scale-110'
                     : 'border-gray-200 text-muted hover:border-accent/50 hover:scale-105'
                 }`}
               >
@@ -405,10 +405,10 @@ export default function MultiStepWaitlistForm() {
               </button>
             ))}
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setStep(3)}
-              className="px-6 py-3 rounded-xl border border-gray-300 text-foreground font-semibold hover:bg-gray-50 transition-all flex items-center gap-2"
+              className="px-6 py-3 rounded-xl border border-gray-300 text-foreground font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
             >
               <ChevronLeft className="w-5 h-5" />
               Back
@@ -422,7 +422,7 @@ export default function MultiStepWaitlistForm() {
             </button>
             <button
               onClick={handleSkip}
-              className="px-6 py-3 rounded-xl text-muted hover:text-foreground transition-all"
+              className="px-4 py-2 text-sm text-muted hover:text-foreground transition-all underline"
             >
               Skip
             </button>
