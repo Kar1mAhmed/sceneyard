@@ -16,7 +16,7 @@ export default function Header() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 50; // Offset for navbar height
+      const offset = 120; // Consistent offset for all sections
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - offset;
       
@@ -71,10 +71,10 @@ export default function Header() {
               How it Works
             </button>
             <button
-              onClick={() => scrollToSection('features')}
+              onClick={() => scrollToSection('faq')}
               className="px-4 py-2 rounded-full text-sm font-medium text-muted hover:text-foreground hover:bg-white transition-all focus:outline-none"
             >
-              Features
+              FAQ
             </button>
             <button
               onClick={() => scrollToSection('waitlist')}
@@ -136,12 +136,12 @@ export default function Header() {
           </button>
           <button
             onClick={() => {
-              scrollToSection('features');
+              scrollToSection('faq');
               document.getElementById('mobile-nav')?.classList.add('hidden');
             }}
             className="block w-full text-left text-muted hover:text-foreground transition-colors py-2"
           >
-            Features
+            FAQ
           </button>
           <button
             onClick={() => {

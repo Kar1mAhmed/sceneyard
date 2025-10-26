@@ -77,7 +77,7 @@ export default function Hero() {
 
         {/* Supporting text */}
         <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-12 leading-relaxed">
-          Studio-level templates, clean comps, and editable controls — drop in, customize, and publish.
+          We promise to provide Studio-level templates that are different from any other template providers, clean comps, and editable controls — drop in, customize, and publish.
         </p>
 
         {/* Waitlist form */}

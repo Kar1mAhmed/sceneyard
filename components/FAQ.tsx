@@ -10,34 +10,59 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: 'How does the credit system work?',
+    question: 'What makes SceneYard different from other template websites?',
     answer:
-      'Credits are used to download templates. Each template costs between 1-5 credits depending on complexity. You can purchase credit packs or subscribe for monthly credits. Golden Members get +15% bonus credits on every purchase.',
+      'SceneYard isn\'t a massive dump of random templates — it\'s a curated library. Every project is hand-built, performance-tested, and designed with modern editing workflows in mind. We focus on clean structure, smart controls, and cinematic quality, not filler content.',
   },
   {
-    question: 'What are the pricing plans?',
+    question: 'Are these templates just re-uploads from other marketplaces?',
     answer:
-      'We offer flexible pricing: pay-as-you-go credit packs starting at $9 for 10 credits, or monthly subscriptions from $29/month with 20 credits included. Golden Members get lifetime +15% bonus credits. Full pricing will be announced at launch.',
+      'Absolutely not. Every template on SceneYard is exclusive and originally produced by our in-house creators or verified motion designers. No recycled content — every file goes through a creative review and optimization process before it\'s added.',
   },
   {
-    question: 'Can I use templates for commercial projects?',
+    question: 'Can I customize the templates easily?',
     answer:
-      'Yes! All templates include a commercial license. You can use them in client work, YouTube videos, social media content, and any commercial projects. The license is per-project, meaning you can use the template in unlimited projects once downloaded.',
+      'Yes — every SceneYard project is built to be editor-friendly. All layers are labeled, color-coded, and organized with intuitive controls for text, colors, and animations. You\'ll spend less time digging through layers and more time creating.',
   },
   {
-    question: 'What if I need a refund?',
+    question: 'Do I need plugins to use these templates?',
     answer:
-      'We offer a 14-day satisfaction guarantee. If a template doesn\'t work as described or has technical issues, contact support for a full credit refund. Credits themselves are non-refundable but never expire.',
+      'Most SceneYard templates are plugin-free, so you can use them out of the box with standard After Effects. If a project uses a plugin (for advanced effects), it\'s clearly labeled before download.',
   },
   {
-    question: 'Do templates require plugins?',
+    question: 'How are SceneYard templates optimized?',
     answer:
-      'Most templates are plugin-free and work with vanilla After Effects. When plugins are required, we clearly mark them in the template description. We prioritize templates that work out-of-the-box with standard AE installations.',
+      'Each template is: Designed for smooth playback and render speed • Compatible with multiple AE versions • Organized in a clean folder structure • Balanced between design quality and performance. You\'ll feel the difference the moment you open one.',
   },
   {
-    question: 'Can I sell my own templates on SceneYard?',
+    question: 'What\'s included when I download a project?',
     answer:
-      'Yes! We\'re building a creator program where motion designers can sell their templates. Creators earn 70% revenue share. If you\'re interested, indicate this in the feedback form and we\'ll reach out during the beta phase.',
+      'You\'ll receive: The original .aep project file • A quick customization guide • Any required media placeholders (images, text comps, etc.). No clutter, no surprises — just plug and play.',
+  },
+  {
+    question: 'Can I use the templates in commercial projects?',
+    answer:
+      'Yes — your active subscription gives you a commercial-use license for all downloads. You can use them freely in client work, ads, or social content (as long as you don\'t resell the template itself).',
+  },
+  {
+    question: 'What if I want something specific that\'s not in the library?',
+    answer:
+      'We love requests. You can suggest new template ideas directly in the feedback stepper form on the landing page. We prioritize user requests for upcoming drops — your feedback literally shapes our next releases.',
+  },
+  {
+    question: 'What\'s a "Golden Member"?',
+    answer:
+      'Golden Members are early supporters who join before launch. They get lifetime perks — like +15% credits on every refill, early access to new templates, and exclusive beta projects.',
+  },
+  {
+    question: 'When will SceneYard officially launch?',
+    answer:
+      'We\'re opening early access soon. Joining the waitlist ensures you\'re among the first to explore the library and claim Golden Member perks.',
+  },
+  {
+    question: 'Can I get notified when new templates drop?',
+    answer:
+      'Yes! All waitlisted users get first-access notifications when new drops go live — before they\'re public.',
   },
 ];
 
@@ -86,7 +111,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative py-8 px-6">
+    <section id="faq" className="relative py-24 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
@@ -113,6 +138,12 @@ export default function FAQ() {
         </div>
 
         <div className="mt-12 text-center">
+          <div className="p-6 rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 mb-8">
+            <p className="text-lg text-foreground leading-relaxed">
+              SceneYard isn't about quantity — it's about quality, clarity, and creativity.<br />
+              We're building the cleanest, most usable After Effects library for professionals who move fast and demand polish.
+            </p>
+          </div>
           <p className="text-muted mb-4">Still have questions?</p>
           <a
             href="mailto:support@sceneyard.com"

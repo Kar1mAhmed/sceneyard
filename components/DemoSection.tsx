@@ -8,10 +8,10 @@ interface DemoTemplate {
   title: string;
   videoUrl: string; // R2 video link
   downloadUrl: string; // R2 download link
-  posterUrl: string;
   aeVersion: string;
   duration: string;
   tags: string[];
+  isVertical?: boolean; // For vertical videos (9:16)
 }
 
 // Add your R2 links here
@@ -19,9 +19,8 @@ const demoTemplates: DemoTemplate[] = [
   {
     id: '1',
     title: 'Cinematic Title Reveal',
-    videoUrl: 'https://your-r2-bucket.r2.dev/videos/cinematic-title.mp4', // Replace with your R2 video link
-    downloadUrl: 'https://your-r2-bucket.r2.dev/downloads/cinematic-title.zip', // Replace with your R2 download link
-    posterUrl: '/demos/cinematic-title-poster.jpg',
+    videoUrl: 'https://media.senu.studio/scenes/Community.mp4',
+    downloadUrl: 'https://media.senu.studio/scenes/community%20scene%20folder.zip',
     aeVersion: 'AE 2020+',
     duration: '4K',
     tags: ['No plugins'],
@@ -29,32 +28,40 @@ const demoTemplates: DemoTemplate[] = [
   {
     id: '2',
     title: 'Dynamic Logo Sting',
-    videoUrl: 'https://your-r2-bucket.r2.dev/videos/logo-sting.mp4',
-    downloadUrl: 'https://your-r2-bucket.r2.dev/downloads/logo-sting.zip',
-    posterUrl: '/demos/logo-sting-poster.jpg',
-    aeVersion: 'AE 2021+',
+    videoUrl: 'https://media.senu.studio/scenes/Chess.mp4',
+    downloadUrl: 'https://media.senu.studio/scenes/Chess.zip',
+    aeVersion: 'AE 2025+',
     duration: '4K',
     tags: ['No plugins'],
   },
   {
     id: '3',
-    title: 'Social Media Promo',
-    videoUrl: 'https://your-r2-bucket.r2.dev/videos/social-promo.mp4',
-    downloadUrl: 'https://your-r2-bucket.r2.dev/downloads/social-promo.zip',
-    posterUrl: '/demos/social-promo-poster.jpg',
-    aeVersion: 'AE 2020+',
+    title: 'Social Media Story',
+    videoUrl: 'https://media.senu.studio/scenes/Board.mp4',
+    downloadUrl: 'https://media.senu.studio/scenes/board%20scene%20folderr.zip',
+    aeVersion: 'AE 2025+',
     duration: '1080p',
     tags: ['Instagram', 'TikTok'],
+    isVertical: true,
   },
   {
     id: '4',
     title: 'Lower Third Pack',
-    videoUrl: 'https://your-r2-bucket.r2.dev/videos/lower-thirds.mp4',
-    downloadUrl: 'https://your-r2-bucket.r2.dev/downloads/lower-thirds.zip',
-    posterUrl: '/demos/lower-thirds-poster.jpg',
-    aeVersion: 'AE 2019+',
+    videoUrl: 'https://media.senu.studio/scenes/apps.mp4',
+    downloadUrl: 'https://media.senu.studio/scenes/apps%20scene%20folder.zip',
+    aeVersion: 'AE 2015+',
     duration: '4K',
     tags: ['8 variations'],
+  },
+  {
+    id: '5',
+    title: 'Vertical Promo',
+    videoUrl: 'https://media.senu.studio/scenes/Finance.mp4',
+    downloadUrl: 'https://media.senu.studio/scenes/Finance%20scene%20folder.zip',
+    aeVersion: 'AE 2025+',
+    duration: '1080p',
+    tags: ['Reels', 'Shorts'],
+    isVertical: true,
   },
 ];
 
@@ -96,54 +103,53 @@ function DemoCard({ template }: { template: DemoTemplate }) {
   };
 
   return (
-    <>
-      <div
-        ref={containerRef}
-        className="group relative bg-white rounded-3xl overflow-hidden border border-[var(--border)] hover:border-accent/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:-translate-y-1"
-      >
-        {/* Video container */}
-        <div className="relative aspect-video bg-black overflow-hidden">
-          <video
-            ref={videoRef}
-            loop
-            muted
-            playsInline
-            poster={template.posterUrl}
-            className="w-full h-full object-cover"
-            aria-label={`Demo video: ${template.title}`}
-          >
-            <source src={template.videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+    <div
+      ref={containerRef}
+      className="group relative bg-white rounded-3xl overflow-hidden border border-[var(--border)] hover:border-accent/50 transition-all duration-500 hover:shadow-2xl"
+    >
+      {/* Video container - Fixed height with proper aspect ratio */}
+      <div className="relative bg-black overflow-hidden h-80 flex items-center justify-center">
+        <video
+          ref={videoRef}
+          loop
+          muted
+          playsInline
+          className={`${
+            template.isVertical 
+              ? 'h-full w-auto' // Vertical: full height, auto width
+              : 'w-full h-full object-cover' // Horizontal: fill container
+          }`}
+          aria-label={`Demo video: ${template.title}`}
+        >
+          <source src={template.videoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-          {/* Play overlay for mobile */}
-          <div className="md:hidden absolute inset-0 flex items-center justify-center bg-black/50">
-            <Play className="w-12 h-12 text-white" aria-hidden="true" />
-          </div>
-
-
-        </div>
-
-        {/* Content */}
-        <div className="p-6">
-          <h3 className="text-base font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
-            {template.title}
-          </h3>
-          <div className="flex flex-wrap gap-2 mb-4 text-xs text-muted">
-            <span className="px-2.5 py-1 rounded-full bg-gray-50 border border-gray-200">{template.aeVersion}</span>
-            <span className="px-2.5 py-1 rounded-full bg-gray-50 border border-gray-200">{template.duration}</span>
-          </div>
-          <button
-            onClick={handleDownload}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-accent text-white text-sm font-semibold hover:bg-[var(--accent-hover)] transition-all focus:outline-none focus:ring-2 focus:ring-accent"
-            aria-label={`Download ${template.title}`}
-          >
-            <Download className="w-4 h-4" aria-hidden="true" />
-            Download
-          </button>
+        {/* Play overlay for mobile */}
+        <div className="md:hidden absolute inset-0 flex items-center justify-center bg-black/50 pointer-events-none">
+          <Play className="w-12 h-12 text-white" aria-hidden="true" />
         </div>
       </div>
-    </>
+
+      {/* Content */}
+      <div className="p-6">
+        <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
+          {template.title}
+        </h3>
+        <div className="flex flex-wrap gap-2 mb-4 text-xs text-muted">
+          <span className="px-2.5 py-1 rounded-full bg-gray-50 border border-gray-200">{template.aeVersion}</span>
+          <span className="px-2.5 py-1 rounded-full bg-gray-50 border border-gray-200">{template.duration}</span>
+        </div>
+        <button
+          onClick={handleDownload}
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-[var(--accent-hover)] transition-all focus:outline-none focus:ring-2 focus:ring-accent shadow-md hover:shadow-lg"
+          aria-label={`Download ${template.title}`}
+        >
+          <Download className="w-4 h-4" aria-hidden="true" />
+          Download
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -160,7 +166,7 @@ export default function DemoSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
           {demoTemplates.map((template) => (
             <DemoCard key={template.id} template={template} />
           ))}

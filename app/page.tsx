@@ -31,7 +31,7 @@ export default function Home() {
         <HowItWorks />
 
         {/* Feedback Form */}
-        <FeedbackForm />
+        {/* <FeedbackForm /> */}
 
         {/* Waitlist & Golden Member */}
         <WaitlistSection />

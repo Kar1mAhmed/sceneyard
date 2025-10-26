@@ -21,10 +21,16 @@
 		"logs": {
 			"enabled": true,
 			"head_sampling_rate": 1,
-			"persist": true,
 			"invocation_logs": true
 		}
-	}
+	},
+	"d1_databases": [
+		{
+			"binding": "SCENERYARD_DB",
+			"database_name": "sceneyard",
+			"database_id": "ebb97bb2-9334-4083-8ca3-2322003e1878"
+		}
+	],
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
@@ -40,7 +46,10 @@
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
 	 */
-	// "vars": { "MY_VARIABLE": "production_value" }
+	"vars": { 
+		"ADMIN_USERNAME": "admin",
+		"ADMIN_PASSWORD": "sceneyard2025"
+	}
 	/**
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
