@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronRight, ChevronLeft, Gift, Check } from 'lucide-react';
 
 interface FormData {
@@ -46,8 +46,51 @@ export default function MultiStepWaitlistForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
 
   const totalSteps = 5;
+
+  // Load email from sessionStorage and listen for Hero email event
+  useEffect(() => {
+    // Function to load and set email
+    const loadEmail = (email: string) => {
+      console.log('Form: Loading email:', email);
+      setFormData(prev => ({ ...prev, email }));
+      
+      // Scroll to form after state update
+      setTimeout(() => {
+        console.log('Form: Scrolling to form');
+        if (formRef.current) {
+          const yOffset = -100;
+          const element = formRef.current;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 600);
+    };
+    
+    // Check sessionStorage on mount
+    const savedEmail = sessionStorage.getItem('waitlist_email');
+    console.log('Form: Checking for saved email on mount:', savedEmail);
+    if (savedEmail) {
+      loadEmail(savedEmail);
+      sessionStorage.removeItem('waitlist_email');
+    }
+    
+    // Listen for custom event from Hero
+    const handleEmailEvent = (event: CustomEvent) => {
+      console.log('Form: Received email event:', event.detail.email);
+      loadEmail(event.detail.email);
+      sessionStorage.removeItem('waitlist_email');
+    };
+    
+    window.addEventListener('waitlist-email-set', handleEmailEvent as EventListener);
+    
+    return () => {
+      window.removeEventListener('waitlist-email-set', handleEmailEvent as EventListener);
+    };
+  }, []);
 
   const saveProgress = async (field: keyof FormData, value: any) => {
     try {
@@ -133,7 +176,7 @@ export default function MultiStepWaitlistForm() {
           You're on the list! 🎉
         </h3>
         <p className="text-muted mb-4">
-          Check your email for confirmation and get ready for 10 extra credits when we launch!
+          We have saved your email to our waitlist. you will have 10 bonus credits unlocked when we launch & golden member eligibility on subscription.
         </p>
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-100 text-yellow-800 text-sm font-semibold">
           <Gift className="w-4 h-4" />
@@ -144,7 +187,7 @@ export default function MultiStepWaitlistForm() {
   }
 
   return (
-    <div className="bg-white border border-[var(--border)] rounded-2xl p-6 sm:p-8 shadow-lg">
+    <div ref={formRef} className="bg-white border border-[var(--border)] rounded-2xl p-6 sm:p-8 shadow-lg">
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-2">

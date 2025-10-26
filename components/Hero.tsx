@@ -27,21 +27,35 @@ export default function Hero() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Navigate to feedback form and prefill email
-    const feedbackSection = document.getElementById('feedback');
-    const emailInput = document.getElementById('email') as HTMLInputElement;
-
-    if (feedbackSection) {
-      feedbackSection.scrollIntoView({ behavior: 'smooth' });
-      // Wait for scroll then focus and fill email
-      setTimeout(() => {
-        if (emailInput) {
-          emailInput.value = email;
-          emailInput.dispatchEvent(new Event('input', { bubbles: true }));
-          emailInput.focus();
-        }
-      }, 800);
-    }
+    if (!email) return;
+    
+    console.log('Hero: Saving email to sessionStorage:', email);
+    // Store email in sessionStorage
+    sessionStorage.setItem('waitlist_email', email);
+    console.log('Hero: Email saved, value in storage:', sessionStorage.getItem('waitlist_email'));
+    
+    // Dispatch custom event to notify form
+    window.dispatchEvent(new CustomEvent('waitlist-email-set', { detail: { email } }));
+    
+    // Wait a bit before scrolling
+    setTimeout(() => {
+      // Scroll to waitlist section
+      const waitlistSection = document.getElementById('waitlist');
+      if (waitlistSection) {
+        const offset = 50;
+        const elementPosition = waitlistSection.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - offset;
+        
+        console.log('Hero: Scrolling to waitlist section');
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+    
+    // Clear the hero email input
+    setEmail('');
   };
 
   const scrollToDemo = () => {

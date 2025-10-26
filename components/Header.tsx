@@ -113,15 +113,15 @@ export default function Header() {
       {/* Mobile navigation */}
       <nav
         id="mobile-nav"
-        className="hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-[var(--border)] shadow-lg"
+        className="hidden fixed top-24 left-6 right-6 z-50 bg-white/95 backdrop-blur-xl rounded-2xl border-2 border-[var(--border)] shadow-2xl"
       >
-        <div className="px-6 py-4 space-y-3">
+        <div className="p-6 space-y-2">
           <button
             onClick={() => {
               scrollToSection('demo');
               document.getElementById('mobile-nav')?.classList.add('hidden');
             }}
-            className="block w-full text-left text-muted hover:text-foreground transition-colors py-2"
+            className="block w-full text-left px-4 py-3 rounded-xl text-foreground font-medium hover:bg-gray-50 transition-all"
           >
             Demo
           </button>
@@ -130,7 +130,7 @@ export default function Header() {
               scrollToSection('how-it-works');
               document.getElementById('mobile-nav')?.classList.add('hidden');
             }}
-            className="block w-full text-left text-muted hover:text-foreground transition-colors py-2"
+            className="block w-full text-left px-4 py-3 rounded-xl text-foreground font-medium hover:bg-gray-50 transition-all"
           >
             How it Works
           </button>
@@ -139,19 +139,21 @@ export default function Header() {
               scrollToSection('faq');
               document.getElementById('mobile-nav')?.classList.add('hidden');
             }}
-            className="block w-full text-left text-muted hover:text-foreground transition-colors py-2"
+            className="block w-full text-left px-4 py-3 rounded-xl text-foreground font-medium hover:bg-gray-50 transition-all"
           >
             FAQ
           </button>
-          <button
-            onClick={() => {
-              scrollToSection('waitlist');
-              document.getElementById('mobile-nav')?.classList.add('hidden');
-            }}
-            className="block w-full text-center px-4 py-2 rounded-full bg-accent text-white font-medium hover:bg-[var(--accent-hover)] transition-colors"
-          >
-            Join Waitlist
-          </button>
+          <div className="pt-2">
+            <button
+              onClick={() => {
+                scrollToSection('waitlist');
+                document.getElementById('mobile-nav')?.classList.add('hidden');
+              }}
+              className="block w-full text-center px-6 py-3 rounded-xl bg-accent text-white font-semibold hover:bg-[var(--accent-hover)] transition-all shadow-md hover:shadow-lg"
+            >
+              Join Waitlist
+            </button>
+          </div>
         </div>
       </nav>
     </header>

@@ -76,7 +76,7 @@ function FAQAccordionItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boo
         className="w-full flex items-center justify-between gap-4 p-6 text-left focus:outline-none"
         aria-expanded={isOpen}
       >
-        <span className={`text-base font-semibold pr-8 transition-colors ${
+        <span className={`text-sm sm:text-base font-semibold pr-8 transition-colors ${
           isOpen ? 'text-accent' : 'text-foreground'
         }`}>
           {faq.question}
@@ -95,7 +95,7 @@ function FAQAccordionItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boo
       {isOpen && (
         <div className="px-6 pb-6 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
           <div className="pl-2 border-l-2 border-accent/30">
-            <p className="text-foreground/80 leading-relaxed text-base pl-4">{faq.answer}</p>
+            <p className="text-foreground/80 leading-relaxed text-sm sm:text-base pl-4">{faq.answer}</p>
           </div>
         </div>
       )}
@@ -111,8 +111,8 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative py-24 px-6">
-      <div className="max-w-4xl mx-auto">
+    <section id="faq" className="relative py-24 px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             Frequently Asked Questions
@@ -138,11 +138,19 @@ export default function FAQ() {
         </div>
 
         <div className="mt-12 text-center">
-          <div className="p-6 rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 mb-8">
-            <p className="text-lg text-foreground leading-relaxed">
-              SceneYard isn't about quantity — it's about quality, clarity, and creativity.<br />
-              We're building the cleanest, most usable After Effects library for professionals who move fast and demand polish.
-            </p>
+          <div className="relative p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-accent/10 via-blue-50 to-purple-50 border-2 border-accent/30 mb-8 overflow-hidden shadow-xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
+            <div className="relative">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-wider mb-4">
+                Our Philosophy
+              </div>
+              <p className="text-xl sm:text-2xl font-bold text-foreground leading-relaxed mb-2">
+                SceneYard isn't about quantity — it's about quality, clarity, and creativity.
+              </p>
+              <p className="text-base sm:text-lg text-muted leading-relaxed">
+                We're building the cleanest, most usable After Effects library for professionals who move fast and demand polish.
+              </p>
+            </div>
           </div>
           <p className="text-muted mb-4">Still have questions?</p>
           <a
