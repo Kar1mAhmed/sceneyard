@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 interface FAQItem {
@@ -105,15 +105,36 @@ function FAQAccordionItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boo
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="relative py-24 px-4 sm:px-6">
+    <section ref={sectionRef} id="faq" className="relative py-24 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             Frequently Asked Questions
           </h2>
@@ -123,7 +144,10 @@ export default function FAQ() {
         </div>
 
         <div
-          className="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-8"
+          className={`bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-8 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
+          }`}
+          style={{ transitionDelay: '200ms' }}
           role="region"
           aria-label="Frequently asked questions"
         >
@@ -137,7 +161,9 @@ export default function FAQ() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className={`mt-12 text-center transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`} style={{ transitionDelay: '400ms' }}>
           <div className="relative p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-accent/10 via-blue-50 to-purple-50 border-2 border-accent/30 mb-8 overflow-hidden shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
             <div className="relative">

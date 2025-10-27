@@ -1,6 +1,7 @@
 'use client';
 
 import { Zap, Sparkles, Layers, Rocket } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 
 const steps = [
   {
@@ -49,15 +50,37 @@ const benefits = [
 ];
 
 export default function HowItWorks() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="how-it-works" className="relative py-24 px-6">
+    <section ref={sectionRef} id="how-it-works" className="relative py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             How SceneYard Works
           </h2>
           <p className="text-xl text-muted max-w-2xl mx-auto">
-            Four simple steps to transform your workflow
+            From waitlist to world-class edits in 4 simple steps
           </p>
         </div>
 
@@ -72,7 +95,11 @@ export default function HowItWorks() {
               {/* Steps */}
               <div className="flex items-start justify-between">
                 {steps.map((step, index) => (
-                  <div key={index} className="relative flex flex-col items-center group flex-1">
+                  <div key={index} className={`relative flex flex-col items-center group flex-1 transition-all duration-700 ${
+                    isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
                     {/* Number circle */}
                     <div className="relative z-10 mb-6">
                       <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-shadow">
@@ -98,7 +125,11 @@ export default function HowItWorks() {
           {/* Mobile: Vertical */}
           <div className="md:hidden space-y-8 px-4">
             {steps.map((step, index) => (
-              <div key={index} className="relative flex gap-4 group">
+              <div key={index} className={`relative flex gap-4 group transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+              }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
                 {/* Number circle */}
                 <div className="relative shrink-0">
                   <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-white font-bold text-lg shadow-lg">
@@ -135,7 +166,10 @@ export default function HowItWorks() {
               return (
                 <div
                   key={index}
-                  className="text-center p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--border)] hover:border-accent transition-all duration-300 hover:scale-105"
+                  className={`relative group text-center p-8 rounded-2xl bg-white border border-[var(--border)] shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-700 ${
+                    isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-accent to-accent-2 mb-4">
                     <Icon className="w-7 h-7 text-white" aria-hidden="true" />

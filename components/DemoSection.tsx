@@ -21,9 +21,10 @@ const demoTemplates: DemoTemplate[] = [
     title: 'Community Collage',
     videoUrl: 'https://media.senu.studio/scenes/Community.mp4',
     downloadUrl: 'https://media.senu.studio/scenes/community%20scene%20folder.zip',
-    aeVersion: 'AE 2020+',
+    aeVersion: 'AE 2025+',
     duration: 'Horizontal',
     tags: ['No plugins'],
+    isVertical: false,
   },
   {
     id: '2',
@@ -33,6 +34,7 @@ const demoTemplates: DemoTemplate[] = [
     aeVersion: 'AE 2025+',
     duration: 'Vertical',
     tags: ['No plugins'],
+    isVertical: true,
   },
   {
     id: '3',
@@ -42,7 +44,7 @@ const demoTemplates: DemoTemplate[] = [
     aeVersion: 'AE 2025+',
     duration: 'Horizontal',
     tags: ['Instagram', 'TikTok'],
-    isVertical: true,
+    isVertical: false,
   },
   {
     id: '4',
@@ -52,6 +54,7 @@ const demoTemplates: DemoTemplate[] = [
     aeVersion: 'AE 2015+',
     duration: 'Vertical',
     tags: ['8 variations'],
+    isVertical: true,
   },
   {
     id: '5',
@@ -105,30 +108,23 @@ function DemoCard({ template }: { template: DemoTemplate }) {
   return (
     <div
       ref={containerRef}
-      className="group relative bg-white rounded-3xl overflow-hidden border border-[var(--border)] hover:border-accent/50 transition-all duration-500 hover:shadow-2xl"
+      className="group relative bg-white rounded-3xl overflow-hidden border border-[var(--border)] hover:border-accent/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 w-full"
     >
-      {/* Video container - Fixed height with proper aspect ratio */}
-      <div className="relative bg-black overflow-hidden h-80 flex items-center justify-center">
+      {/* Video container - Consistent aspect ratio */}
+      <div className={`relative bg-black overflow-hidden flex items-center justify-center ${
+        template.isVertical ? 'aspect-[9/16]' : 'aspect-video'
+      }`}>
         <video
           ref={videoRef}
           loop
           muted
           playsInline
-          className={`${
-            template.isVertical 
-              ? 'h-full w-auto' // Vertical: full height, auto width
-              : 'w-full h-full object-cover' // Horizontal: fill container
-          }`}
+          className="w-full h-full object-contain"
           aria-label={`Demo video: ${template.title}`}
         >
           <source src={template.videoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-
-        {/* Play overlay for mobile */}
-        <div className="md:hidden absolute inset-0 flex items-center justify-center bg-black/50 pointer-events-none">
-          <Play className="w-12 h-12 text-white" aria-hidden="true" />
-        </div>
       </div>
 
       {/* Content */}
@@ -154,10 +150,14 @@ function DemoCard({ template }: { template: DemoTemplate }) {
 }
 
 export default function DemoSection() {
+  // Separate horizontal and vertical templates
+  const horizontalTemplates = demoTemplates.filter(t => !t.isVertical);
+  const verticalTemplates = demoTemplates.filter(t => t.isVertical);
+
   return (
-    <section id="demo" className="relative py-24 px-6">
+    <section id="demo" className="relative py-24 px-6 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-20 animate-in fade-in slide-in-from-bottom-6 duration-700">
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             Live Demos
           </h2>
@@ -166,11 +166,55 @@ export default function DemoSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-          {demoTemplates.map((template) => (
-            <DemoCard key={template.id} template={template} />
-          ))}
-        </div>
+        {/* Horizontal Templates */}
+        {horizontalTemplates.length > 0 && (
+          <div className="mb-24 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+            <div className="mb-10 text-center">
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white border-2 border-accent/20 shadow-lg">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                <h3 className="text-2xl font-bold text-foreground">
+                  Horizontal Templates
+                </h3>
+              </div>
+            </div>
+            <div className="flex flex-wrap justify-center gap-8">
+              {horizontalTemplates.map((template, index) => (
+                <div 
+                  key={template.id} 
+                  className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] animate-in fade-in slide-in-from-bottom-4 duration-700"
+                  style={{ animationDelay: `${(index + 1) * 150}ms` }}
+                >
+                  <DemoCard template={template} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Vertical Templates */}
+        {verticalTemplates.length > 0 && (
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-500">
+            <div className="mb-10 text-center">
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white border-2 border-accent/20 shadow-lg">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                <h3 className="text-2xl font-bold text-foreground">
+                  Vertical Templates
+                </h3>
+              </div>
+            </div>
+            <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
+              {verticalTemplates.map((template, index) => (
+                <div 
+                  key={template.id} 
+                  className="w-[calc(50%-1rem)] sm:w-[calc(33.333%-1.5rem)] lg:w-[calc(25%-1.5rem)] animate-in fade-in slide-in-from-bottom-4 duration-700"
+                  style={{ animationDelay: `${(index + 1) * 150}ms` }}
+                >
+                  <DemoCard template={template} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

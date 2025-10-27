@@ -67,7 +67,7 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Animated headline */}
-        <div className="mb-4 h-24 sm:h-32 flex items-center justify-center">
+        <div className="mb-4 h-24 sm:h-32 flex items-center justify-center animate-in fade-in slide-in-from-top-6 duration-700">
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight">
             <AnimatePresence mode="wait">
               <motion.span
@@ -85,19 +85,19 @@ export default function Hero() {
         </div>
 
         {/* Subheadline */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-6 leading-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-6 leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
           After Effects project files that helps editors ship faster.
         </h2>
 
         {/* Supporting text */}
-        <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-12 leading-relaxed">
+        <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-12 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
           We promise to provide Studio-level templates that are different from any other template providers, clean comps, and editable controls — drop in, customize, and publish.
         </p>
 
         {/* Waitlist form */}
         <form
           onSubmit={handleSubmit}
-          className="max-w-lg mx-auto mb-8"
+          className="max-w-lg mx-auto mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500"
           aria-label="Join waitlist form"
         >
           <div className="relative">
@@ -122,7 +122,7 @@ export default function Hero() {
         {/* Secondary CTA */}
         <button
           onClick={scrollToDemo}
-          className="inline-flex items-center gap-2 text-muted hover:text-foreground transition-colors group focus:outline-none focus:text-foreground"
+          className="inline-flex items-center gap-2 text-muted hover:text-foreground transition-colors group focus:outline-none focus:text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-700"
           aria-label="Preview demo section"
         >
           <span className="text-lg font-medium">Preview Demo</span>
