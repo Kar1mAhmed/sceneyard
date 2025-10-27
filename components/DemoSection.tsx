@@ -155,8 +155,8 @@ export default function DemoSection() {
   const verticalTemplates = demoTemplates.filter(t => t.isVertical);
 
   return (
-    <section id="demo" className="relative py-24 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto w-full">
+    <section id="demo" className="relative py-24 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20 animate-in fade-in slide-in-from-bottom-6 duration-700">
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             Live Demos

@@ -71,7 +71,7 @@ export default function WaitlistSection() {
   return (
     <>
       {/* Main Waitlist Section */}
-      <section ref={sectionRef} id="waitlist" className="relative py-12 px-6">
+      <section ref={sectionRef} id="waitlist" className="relative py-12 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className={`text-center mb-12 transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'

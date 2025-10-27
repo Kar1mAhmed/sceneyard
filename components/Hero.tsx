@@ -63,7 +63,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-20 mt-8">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 mt-8">
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Animated headline */}
