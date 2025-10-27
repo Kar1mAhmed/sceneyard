@@ -155,8 +155,8 @@ export default function DemoSection() {
   const verticalTemplates = demoTemplates.filter(t => t.isVertical);
 
   return (
-    <section id="demo" className="relative py-24 px-6 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto">
+    <section id="demo" className="relative py-24 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-20 animate-in fade-in slide-in-from-bottom-6 duration-700">
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             Live Demos
@@ -177,11 +177,11 @@ export default function DemoSection() {
                 </h3>
               </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 px-4">
               {horizontalTemplates.map((template, index) => (
                 <div 
                   key={template.id} 
-                  className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] animate-in fade-in slide-in-from-bottom-4 duration-700"
+                  className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700"
                   style={{ animationDelay: `${(index + 1) * 150}ms` }}
                 >
                   <DemoCard template={template} />
@@ -202,11 +202,11 @@ export default function DemoSection() {
                 </h3>
               </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 max-w-6xl mx-auto px-4">
               {verticalTemplates.map((template, index) => (
                 <div 
                   key={template.id} 
-                  className="w-[calc(50%-1rem)] sm:w-[calc(33.333%-1.5rem)] lg:w-[calc(25%-1.5rem)] animate-in fade-in slide-in-from-bottom-4 duration-700"
+                  className="w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(25%-1.5rem)] max-w-sm animate-in fade-in slide-in-from-bottom-4 duration-700"
                   style={{ animationDelay: `${(index + 1) * 150}ms` }}
                 >
                   <DemoCard template={template} />
